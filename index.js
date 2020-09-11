@@ -1,3 +1,5 @@
+"use strict"
+
 // (5 points): As a developer, I want to make good, consistent commits.
 // (5 points): As a user, I want a destination to be randomly selected for my day trip.
 // (5 points): As a user, I want a restaurant to be randomly selected for my day trip.
@@ -10,58 +12,118 @@
 // Research:
 // How to generate a random number in JavaScript?
 
-//Random Location Function
-function randomLocation(){
 
+    //Random Location Function
+function chooseLocation(){
     let destination = ['Japan', 'Germany', 'Paris', 'Cancoon', 'Korean', 'England'];
     let randomLocation = ' ';
 
     let randomDesitination = destination[Math.floor(Math.random()*destination.length)];
-    randomLocation += randomDesitination;
-
-    console.log(randomLocation);
+        randomLocation += randomDesitination;
+                
+        return randomLocation;
 }   
 
-randomLocation();
 
-//Random Restaurant Function
-function randomRestaurant(){ 
+
+    //Random Restaurant Function
+function chooseRestaurant(){ 
 let restaurant = ['Family Diner', 'Cafe', 'Fancy Restaurant', 'Take Out', 'Street Food'];
 let randomRestaurant = ' ';
 
 let randomFood = restaurant[Math.floor(Math.random()*restaurant.length)];
     randomRestaurant += randomFood;
-
-    console.log(randomRestaurant);
+        
+    return randomRestaurant;
 }
 
-randomRestaurant();
 
-//Random Mode of Transportation Function
-function randomTransportation(){ 
+
+    //Random Mode of Transportation Function
+function chooseTransportation(){ 
     let transportation = ['Scooter', 'Taxi', 'Rented Car', 'Walk', 'Bus', 'Train'];
     let rdmTransResult = ' ';
     
     let tranSelect = transportation[Math.floor(Math.random()*transportation.length)];
         rdmTransResult += tranSelect;
     
-        console.log(rdmTransResult);
+        return rdmTransResult;
     }
     
-    randomTransportation();
 
-//Random Entertainment Function
-
-function rndEntertainment(){ 
-    let entertainment = ['concert', 'musical', 'night tour', 'stand up comedy', 'movie theater'];
+    //Random Entertainment Function
+function chooseEntertainment(){ 
+    let entertainment = ['Concert', 'Musical', 'Night tour', 'Stand up comedy', 'Movie theater'];
     let entertainmentResult = ' ';
     
     let entertainmentSelect = entertainment[Math.floor(Math.random()*entertainment.length)];
         entertainmentResult += entertainmentSelect;
     
-        console.log(entertainmentResult);
+        return entertainmentResult;
     }
     
-    rndEntertainment();
 
-//
+    //Confirm function
+// function confirm() { 
+//     let confirmation = prompt('Confirm results? Yes/No?');
+
+//     if(confirmation === 'yes'.toUpperCase() || confirmation === 'yes'.toLowerCase()) {
+        
+//     }
+//     else if(confirmation === 'no'.toUpperCase() || confirmation === 'no'.toLowerCase()){
+//         console.log('You have canceled your results.')
+//     }
+// }
+
+
+    //Trip Result function
+function funTrip() {
+    let trip = [];
+
+    let userLocation = chooseLocation();
+    let userRestaraunt = chooseRestaurant();
+    let userTransportation = chooseTransportation();
+    let userEntertainment = chooseEntertainment();
+
+        trip += userLocation + userRestaraunt + userTransportation + userEntertainment;
+    
+        // if(changeDecision === 'yes'.toUpperCase() || changeDecision === 'yes'.toLowerCase()) {
+        //     switch(userInput)
+        // }
+        // else {
+        //     funTrip();
+        // }
+
+    // let decisionChange = prompt('Would you like to make any changes?');
+    
+    //     if(decisionChange = 'yes'){
+    //         userInput;
+    //     }
+    //     else {
+    //         console.log(funtrip());
+    //     }
+
+    let userInput = prompt('Put "1" to change Location, Put "2" to change Restaurant, Put "3" to change Transporation, Put "4" to change Entertainment,')
+    
+        switch(userInput){
+            case "1":
+                console.log('Your new locations is' + chooseLocation());
+                break;
+            case "2":
+                console.log('Your new dine is' + chooseRestaurant());
+                break;
+            case "3":
+                console.log('Your new transportation is' + chooseTransportation());
+                break;
+            case "4":
+                console.log('Your new entertainment is' + chooseEntertainment());
+            break;
+    }
+    
+    // confirm();
+    // console.log('Your location is' + '' + chooseLocation() + '.' + '' + ' Your eating at:' + '' + chooseRestaurant() + '.' + '' + 'Your mode of transportation is' + '' + chooseTransportation() + '.' + '' + 'Your entertainment is' + '' + chooseEntertainment + '.' );
+    //after confirminng, print everything from trip
+
+}
+
+funTrip();
