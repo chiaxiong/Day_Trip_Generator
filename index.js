@@ -67,23 +67,23 @@ function chooseEntertainment(){
     }
     
 
-    //Confirm function
-function confirm() { 
-    let confirmation = prompt('Are you satisfied with generator? Yes/No?');
-
-    if(confirmation === 'Yes' || confirmation === 'yes'.toLowerCase()) {
-        return false;
-    }
-    else if(confirmation === 'No' || confirmation === 'no'.toLowerCase()){
-        return true;
-    }
-}
-
-// confirm();
-
+    // Re-selection function
+    function selectChange() { 
+        let changeDecision = prompt('Would you like to make any changes?');
+        
+            switch(changeDecision){
+                 case 'yes'.toLowerCase() || 'Yes':
+                    return reSelection();
+        
+                case 'no'.toLowerCase() || 'No':
+                    return [];
+            }
+        }
+        
 
     //User input reselection
    
+
 function reSelection() {
 let userInput = prompt('Put "1" to change Location, Put "2" to change Restaurant, Put "3" to change Transporation, Put "4" to change Entertainment,')
     
@@ -107,20 +107,18 @@ let userInput = prompt('Put "1" to change Location, Put "2" to change Restaurant
     }
 } 
 
-    // Re-selection function
-function selectChange() { 
-let changeDecision = prompt('Would you like to make any changes?');
-
-    switch(changeDecision){
-         case 'yes':
-            return reSelection();
-
-        case 'no':
-            return [];
-            break;
+    //Confirm function
+    function confirm() { 
+        let confirmation = prompt('Are you satisfied with generator? Yes/No?');
+    
+        if(confirmation === 'Yes' || confirmation === 'yes'.toLowerCase()) {
+            return false;
+        }
+        else if(confirmation === 'No' || confirmation === 'no'.toLowerCase()){
+            return true;
+        }
     }
-}
-
+    
 
     //Trip Result function
 function funTrip() {
@@ -140,7 +138,8 @@ function funTrip() {
     
     while(i){
         
-        console.log('Your location is' + '' + trip[0] + '.' + '' + ' Your eating at:' + '' + trip[1] + '.' + '' + 'Your mode of transportation is' + '' + trip[2] + '.' + '' + 'Your entertainment is' + ' ' + trip[3] + '.' );
+            //first output of randomize trip info
+        console.log("Your location is" + '' + trip[0] + '.' + ' ' + "You're eating at:" + '' + trip[1] + '.' + ' ' + 'Your mode of transportation is' + '' + trip[2] + '.' + ' ' + 'Your entertainment is' + '' + trip[3] + '.' );
         
         let newSelectionChange  = selectChange();
 
@@ -151,12 +150,9 @@ function funTrip() {
         i = confirm(); 
     }
     
+        //final output of trip info after changes are made
+    console.log('Your location is' + '' + trip[0] + '.' + '' + " You're eating at:" + '' + trip[1] + '.' + ' ' + 'Your mode of transportation is' + '' + trip[2] + '.' + '' + 'Your entertainment is' + ' ' + trip[3] + '.' );
     
-    console.log('Your location is' + '' + trip[0] + '.' + '' + ' Your eating at:' + '' + trip[1] + '.' + '' + 'Your mode of transportation is' + '' + trip[2] + '.' + '' + 'Your entertainment is' + ' ' + trip[3] + '.' );
-    
-          
-        
-
 }
 
 funTrip();
