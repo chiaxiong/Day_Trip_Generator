@@ -20,7 +20,8 @@ function chooseLocation(){
 
     let randomDesitination = destination[Math.floor(Math.random()*destination.length)];
         randomLocation += randomDesitination;
-                
+         
+        console.log(randomLocation);
         return randomLocation;
 }   
 
@@ -33,7 +34,8 @@ let randomRestaurant = ' ';
 
 let randomFood = restaurant[Math.floor(Math.random()*restaurant.length)];
     randomRestaurant += randomFood;
-        
+    
+    console.log(randomRestaurant);
     return randomRestaurant;
 }
 
@@ -46,7 +48,8 @@ function chooseTransportation(){
     
     let tranSelect = transportation[Math.floor(Math.random()*transportation.length)];
         rdmTransResult += tranSelect;
-    
+
+        console.log(rdmTransResult);
         return rdmTransResult;
     }
     
@@ -58,22 +61,65 @@ function chooseEntertainment(){
     
     let entertainmentSelect = entertainment[Math.floor(Math.random()*entertainment.length)];
         entertainmentResult += entertainmentSelect;
-    
+
+        console.log(entertainmentResult);
         return entertainmentResult;
     }
     
 
     //Confirm function
-// function confirm() { 
-//     let confirmation = prompt('Confirm results? Yes/No?');
+function confirm() { 
+    let confirmation = prompt('Are you satisfied with generator? Yes/No?');
 
-//     if(confirmation === 'yes'.toUpperCase() || confirmation === 'yes'.toLowerCase()) {
-        
-//     }
-//     else if(confirmation === 'no'.toUpperCase() || confirmation === 'no'.toLowerCase()){
-//         console.log('You have canceled your results.')
-//     }
-// }
+    if(confirmation === 'Yes' || confirmation === 'yes'.toLowerCase()) {
+        return false;
+    }
+    else if(confirmation === 'No' || confirmation === 'no'.toLowerCase()){
+        return true;
+    }
+}
+
+// confirm();
+
+
+    //User input reselection
+   
+function reSelection() {
+let userInput = prompt('Put "1" to change Location, Put "2" to change Restaurant, Put "3" to change Transporation, Put "4" to change Entertainment,')
+    
+        switch(userInput){
+            case "1":
+                let location = chooseLocation();
+                let newOtherLocation = [0, location];
+                return newOtherLocation;
+            case "2":
+                let restaurant = chooseRestaurant();
+                let newOtherRestaurant = [1, restaurant];
+                return newOtherRestaurant;
+            case "3":
+                let transportation = chooseTransportation();
+                let newOtherTransportation = [2, transportation];
+                return newOtherTransportation;
+            case "4":
+                let entertainment = chooseEntertainment();
+                let newOtherEntertainment = [3, entertainment];
+                return newOtherEntertainment;
+    }
+} 
+
+    // Re-selection function
+function selectChange() { 
+let changeDecision = prompt('Would you like to make any changes?');
+
+    switch(changeDecision){
+         case 'yes':
+            return reSelection();
+
+        case 'no':
+            return [];
+            break;
+    }
+}
 
 
     //Trip Result function
@@ -85,44 +131,31 @@ function funTrip() {
     let userTransportation = chooseTransportation();
     let userEntertainment = chooseEntertainment();
 
-        trip += userLocation + userRestaraunt + userTransportation + userEntertainment;
+    trip.push(userLocation);
+    trip.push(userRestaraunt);
+    trip.push(userTransportation);
+    trip.push(userEntertainment);
     
-        // if(changeDecision === 'yes'.toUpperCase() || changeDecision === 'yes'.toLowerCase()) {
-        //     switch(userInput)
-        // }
-        // else {
-        //     funTrip();
-        // }
+    let i = true;
+    
+    while(i){
+        
+        console.log('Your location is' + '' + trip[0] + '.' + '' + ' Your eating at:' + '' + trip[1] + '.' + '' + 'Your mode of transportation is' + '' + trip[2] + '.' + '' + 'Your entertainment is' + ' ' + trip[3] + '.' );
+        
+        let newSelectionChange  = selectChange();
 
-    // let decisionChange = prompt('Would you like to make any changes?');
-    
-    //     if(decisionChange = 'yes'){
-    //         userInput;
-    //     }
-    //     else {
-    //         console.log(funtrip());
-    //     }
+        if(newSelectionChange !== []) {
+            trip[newSelectionChange[0]] = newSelectionChange[1];
+        }
 
-    let userInput = prompt('Put "1" to change Location, Put "2" to change Restaurant, Put "3" to change Transporation, Put "4" to change Entertainment,')
-    
-        switch(userInput){
-            case "1":
-                console.log('Your new locations is' + chooseLocation());
-                break;
-            case "2":
-                console.log('Your new dine is' + chooseRestaurant());
-                break;
-            case "3":
-                console.log('Your new transportation is' + chooseTransportation());
-                break;
-            case "4":
-                console.log('Your new entertainment is' + chooseEntertainment());
-            break;
+        i = confirm(); 
     }
     
-    // confirm();
-    // console.log('Your location is' + '' + chooseLocation() + '.' + '' + ' Your eating at:' + '' + chooseRestaurant() + '.' + '' + 'Your mode of transportation is' + '' + chooseTransportation() + '.' + '' + 'Your entertainment is' + '' + chooseEntertainment + '.' );
-    //after confirminng, print everything from trip
+    
+    console.log('Your location is' + '' + trip[0] + '.' + '' + ' Your eating at:' + '' + trip[1] + '.' + '' + 'Your mode of transportation is' + '' + trip[2] + '.' + '' + 'Your entertainment is' + ' ' + trip[3] + '.' );
+    
+          
+        
 
 }
 
